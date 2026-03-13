@@ -114,16 +114,24 @@
 
         }
 
-        function moverBotao() {
+        function moverBotao(){
 
-            let largura = window.innerWidth - 100;
-            let altura = window.innerHeight - 100;
+const botao = document.getElementById("sim");
 
-            sim.style.position = "absolute";
-            sim.style.left = Math.random() * largura + "px";
-            sim.style.top = Math.random() * altura + "px";
+const larguraTela = window.innerWidth;
+const alturaTela = window.innerHeight;
 
-        }
+const larguraBotao = botao.offsetWidth;
+const alturaBotao = botao.offsetHeight;
+
+const x = Math.random() * (larguraTela - larguraBotao);
+const y = Math.random() * (alturaTela - alturaBotao);
+
+botao.style.position = "absolute";
+botao.style.left = x + "px";
+botao.style.top = y + "px";
+
+}
 
         sim.addEventListener("mouseover", moverBotao);
         sim.addEventListener("touchstart", moverBotao);
