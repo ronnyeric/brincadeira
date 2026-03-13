@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Pergunta Muito Importante</title>
+
+<style>
+
+body{
+font-family: Comic Sans MS, cursive;
+text-align:center;
+background: linear-gradient(45deg,#ff4e50,#f9d423);
+height:100vh;
+overflow:hidden;
+color:white;
+}
+
+#box{
+position:absolute;
+top:40%;
+left:50%;
+transform:translate(-50%,-50%);
+}
+
+h1{
+font-size:40px;
+}
+
+button{
+padding:15px 25px;
+font-size:20px;
+margin:10px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+}
+
+#sim{
+background:#00ff88;
+}
+
+#nao{
+background:#ff4444;
+color:white;
+}
+
+#mensagem{
+margin-top:20px;
+font-size:25px;
+}
+
+img{
+width:250px;
+margin-top:20px;
+border-radius:15px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="box">
+
+<h1 id="pergunta">💖 Você me ama? 💖</h1>
+
+<button id="sim" onclick="clicouSim()">SIM</button>
+<button id="nao" onclick="clicouNao()">NÃO</button>
+
+<div id="mensagem"></div>
+
+</div>
+
+<script>
+
+let tentativas = 0;
+
+function mover(){
+
+let largura = window.innerWidth - 200;
+let altura = window.innerHeight - 200;
+
+let x = Math.random()*largura;
+let y = Math.random()*altura;
+
+let box = document.getElementById("box");
+
+box.style.left = x+"px";
+box.style.top = y+"px";
+
+}
+
+function clicouSim(){
+
+tentativas++;
+
+if(tentativas==1){
+
+document.getElementById("mensagem").innerText =
+"🤨 Tem certeza disso??";
+
+mover();
+
+}
+
+else if(tentativas==2){
+
+document.getElementById("mensagem").innerText =
+"🧐 Suspeito... tenta de novo";
+
+mover();
+
+}
+
+else{
+
+document.getElementById("pergunta").innerText =
+"PEGADINHA 😂";
+
+document.getElementById("mensagem").innerHTML =
+"Mentira! você só quer o meu pinto 😎<br><br>" +
+"<img src='https://upload.wikimedia.org/wikipedia/commons/3/32/Baby_chicken.jpg'>";
+
+}
+
+}
+
+function clicouNao(){
+
+document.getElementById("mensagem").innerText =
+"😭 Coração partido em 4K";
+
+}
+
+</script>
+
+</body>
+</html>
