@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pergunta Muito Importante</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+            color: white;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        #box {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 400px;
+        }
+
+        h1 {
+            font-size: 32px;
+        }
+
+        button {
+            padding: 15px 25px;
+            font-size: 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+        }
+
+        #sim {
+            background: #00ff88;
+        }
+
+        #nao {
+            background: #ff4444;
+            color: white;
+        }
+
+        #mensagem {
+            margin-top: 20px;
+            font-size: 22px;
+        }
+
+        .chicken {
+            position: absolute;
+            width: 80px;
+            animation: spin 3s linear infinite;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg)
+            }
+
+            to {
+                transform: rotate(360deg)
+            }
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 40px;
+            animation: fall 2s linear forwards;
+        }
+
+        @keyframes fall {
+            from {
+                top: -50px
+            }
+
+            to {
+                top: 100vh
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="box">
+
+        <h1 id="pergunta">💖 Você me ama? 💖</h1>
+
+        <button id="sim">SIM</button>
+        <button id="nao">NÃO</button>
+
+        <div id="mensagem"></div>
+
+    </div>
+
+    <script>
+
+        let tentativas = 0;
+
+        const sim = document.getElementById("sim");
+        const mensagem = document.getElementById("mensagem");
+
+        function somMeme() {
+
+            let audio = new Audio("https://www.myinstants.com/media/sounds/vine-boom.mp3");
+            audio.play();
+
+        }
+
+        function moverBotao() {
+
+            let largura = window.innerWidth - 100;
+            let altura = window.innerHeight - 100;
+
+            sim.style.position = "absolute";
+            sim.style.left = Math.random() * largura + "px";
+            sim.style.top = Math.random() * altura + "px";
+
+        }
+
+        sim.addEventListener("mouseover", moverBotao);
+        sim.addEventListener("touchstart", moverBotao);
+
+        sim.addEventListener("click", () => {
+
+            tentativas++;
+
+            somMeme();
+
+            if (tentativas == 1) {
+
+                mensagem.innerText = "🤨 HMMMM suspeito...";
+
+            }
+
+            else if (tentativas == 2) {
+
+                mensagem.innerText = "🧐 Tá tentando clicar né safado kkkkk";
+
+            }
+
+            else {
+
+                document.getElementById("pergunta").innerText = "PEGADINHA 😂";
+
+                mensagem.innerText = "Você caiu na trollagem da internet 😎";
+
+                chuvaCoracao();
+                aparecerPintos();
+
+            }
+
+        });
+
+        document.getElementById("nao").addEventListener("click", () => {
+
+            mensagem.innerText = "💔 Meu coração foi destruído em HD";
+
+            chuvaCoracao();
+
+        });
+
+        function chuvaCoracao() {
+
+            for (let i = 0; i < 15; i++) {
+
+                let heart = document.createElement("div");
+                heart.className = "heart";
+                heart.innerText = "💔";
+
+                heart.style.left = Math.random() * 100 + "vw";
+
+                document.body.appendChild(heart);
+
+                setTimeout(() => { heart.remove() }, 2000);
+
+            }
+
+        }
+
+        function aparecerPintos() {
+
+            for (let i = 0; i < 10; i++) {
+
+                let img = document.createElement("img");
+
+                img.src = "https://upload.wikimedia.org/wikipedia/commons/3/32/Baby_chicken.jpg";
+
+                img.className = "chicken";
+
+                img.style.left = Math.random() * 90 + "vw";
+                img.style.top = Math.random() * 90 + "vh";
+
+                document.body.appendChild(img);
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>
